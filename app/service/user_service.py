@@ -38,3 +38,7 @@ class UserService():
     def existsUser(self, name: Optional[str] = None, user: Optional[Union[User,UserIn]] = None, id: Optional[int] = -1) -> bool:
         return id in self.users.keys() or name in self.users.values() or user in self.users.values()
 
+    def updateUser(self, userIn: UserIn, user_id: int):
+        new_user = userIn.mapUser(user_id)
+        self.users[user_id] = new_user
+        return new_user
