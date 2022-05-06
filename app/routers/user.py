@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import Optional
-from app.model.user import UserIn
-from app.model.errors import InvalidId
-from app.service.user_service import UserService
+from model.user import UserIn
+from service.user_service import UserService
 
 router = APIRouter()
 user_service = UserService()
