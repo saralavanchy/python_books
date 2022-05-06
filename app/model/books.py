@@ -2,16 +2,16 @@ from pydantic import BaseModel
 from enum import Enum
 from typing import List, Optional, Union
 
-class BibleBookType(enum):
-    LAW
-    WISDOM_LITERATURE
-    PSALMS
-    NOVELLA
-    PROPHECY
-    APOCALYPTIC_LETERATURE
-    GOSPEL
-    ACTS_OF_THE_APOSTLES
-    EPISTLE
+class BibleBookType(Enum):
+    LAW = "Law"
+    WISDOM = "Wisdom literature"
+    PSALMS = "Psalms"
+    NOVELLA = "Novella"
+    PROPHECY = "Prophecy"
+    APOCALYPTIC = "Apocalyptic literature"
+    GOSPEL = "Gospel"
+    ACTS = "Acts of the apostoles"
+    EPISTLE = "Epistles"
 
 class Chaper(BaseModel):
     number: int
@@ -20,7 +20,7 @@ class Chaper(BaseModel):
     def hasVerse(self, verse: int) -> bool:
         return verse <= self.numberOfVerses
 
-    def __eq__(self, chapter: Union[int, Chaper]):
+    def __eq__(self, chapter: Union[int, Chapter]):
         if isinstance(chapter, Chaper):
             return chapter.number == self.number
         return chapter == self.number

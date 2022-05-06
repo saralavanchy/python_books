@@ -1,7 +1,7 @@
 from pydantic import BaseModel, validator
 from typing import List, Optional
-from app.model.email import Email
-from app.model.errors import InvalidEmailError
+from model.email import Email
+from model.errors import InvalidEmailError
 
 class BaseUser(BaseModel):
     name: str
