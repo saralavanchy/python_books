@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from routers import user
 from schema.index import graphql_app
 import uvicorn
+from app.internal.configs import configs
 
 app = FastAPI()
 
