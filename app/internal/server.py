@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.routers import user
 import uvicorn
+from app.internal.configs import configs
 
 app = FastAPI()
 
