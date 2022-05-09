@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import Optional
-from app.model.user import UserIn
-from app.model.errors import InvalidId
-from app.service.user_service import UserService
+from model.user import UserIn
+from service.user_service import UserService
 
 router = APIRouter()
 user_service = UserService()
@@ -43,3 +42,10 @@ def delete_user(user_id: int):
         raise HTTPException(status_code=404, detail=f"A user with id {user_id} was not found")
     user_service.deleteUser(user_id)
     return user
+
+@router.put("/user/{user_id}", tags=["user"])
+def update_user(user_id: int, userIn: UserIn):
+    user = user_service.getUserById(user_id)
+    if user == None:
+        raise HTTPException(status_code=404, detail=f"A user with id {user_id} was not found")
+    user_service.updateUser(userIn, user_id)

@@ -1,12 +1,12 @@
 from typing import  Optional, Union
-from app.model.user import User, UserIn
+from model.user import User, UserIn
 
 class UserService():
     def __init__(self):
         self.users = {}
         self.users[1] = User(name = "sara", surname = "lavanchy", id = 1, address = "some street 1234", email = "sara@email.com")
         self.users[2] = User(name = "juan", surname = "perez", id = 2 , address = "other street 123", email = "juanperez@email.com")
-        self.users[3] = User(name = "rodrigo", surname = "soria", id = 3, address = "unknown street 4321", email="rodrigo@email.com")
+        self.users[3] = User(name = "rodrigo", surname = "soria", id = 3, address = "unknown street 4321", email = "rodrigo@email.com")
 
     def getUsers(self):
         user_list = []
@@ -38,3 +38,7 @@ class UserService():
     def existsUser(self, name: Optional[str] = None, user: Optional[Union[User,UserIn]] = None, id: Optional[int] = -1) -> bool:
         return id in self.users.keys() or name in self.users.values() or user in self.users.values()
 
+    def updateUser(self, userIn: UserIn, user_id: int):
+        new_user = userIn.mapUser(user_id)
+        self.users[user_id] = new_user
+        return new_user

@@ -1,4 +1,4 @@
-from app.model.errors import InvalidEmailError
+from model.errors import InvalidEmailError
 
 class Email:
     def __init__(self, prefix: str, domain: str):
