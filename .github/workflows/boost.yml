@@ -23,8 +23,5 @@ jobs:
         uses: peaudecastor/boost-security-scanner-github@v2
         with:
           action: scan
-          api_endpoint: https://devel.boostsecurity.dev
           api_token: ${{ secrets.BOOST_API_TOKEN_DEV }}
-          additional_args: --disable-telemetry --api-version v2
-          cli_version: 3.0.0.rc483
-          scanner_version: 3.0.0.rc483
+
