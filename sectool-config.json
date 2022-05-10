@@ -82,7 +82,7 @@
           "gcp-gce-public-ip": "alert",
           "gcp-sql-public-access": "alert",
           "dangerous-function-deserialization": "alert",
-          "jwt-hardcoded-secret-key": "alert"
+          "jwt-hardcoded-secret-key": "block"
         }
       }
     ]
