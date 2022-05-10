@@ -11,8 +11,8 @@ on:
       - synchronize
 
 jobs:
-  boost_security_sast:
-    name: Boost Security / Native Scanner
+  scan_job:
+    name: Boost Security Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
