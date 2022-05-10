@@ -1,4 +1,4 @@
-name: BOOST
+name: SAST
 on:
   push:
     branches:
@@ -11,8 +11,8 @@ on:
       - synchronize
 
 jobs:
-  scan_job:
-    name: Boost Security Scanner
+  boost_security_sast:
+    name: Boost Security / Native Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
