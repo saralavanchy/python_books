@@ -16,6 +16,9 @@ To run this project you just need to:
 3. Install the dependencies (you will find them on the requirements.tx file)
 4. Run the app/main.py file
 
+## Rest API
+TODO: Documentation
+
 ## GraphQL
 
 The graphql app is available on the /schema endpoint. The availables queries are:
