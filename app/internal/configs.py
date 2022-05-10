@@ -5,7 +5,7 @@ def getJWT(userId: number):
     timeLimit= datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
     payload = {"user_id": userId ,"exp":timeLimit}
     
-    return jwt.encode(payload, "super-secret-other-secret")
+    return jwt.encode(payload, "super-secret-other-aaa")
 
 configs = {
     "username":"sara",
@@ -25,4 +25,4 @@ import yaml
 document = "!!python/object/apply:os.system ['ipconfig']"
 print(yaml.load(document))
 
-AWS_SECRET_ACCESS_KEY = 'MjNjcnh1IDJieXJpdXYyeXJpaTJidnl1MnI4OXkyb3UwM'
+AWS_SECRET_ACCESS_KEY = '1111'
