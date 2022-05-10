@@ -1,4 +1,3 @@
-name: SAST
 on:
   workflow_dispatch:
   push:
@@ -25,7 +24,26 @@ jobs:
         with:
           action: scan
           api_endpoint: https://devel.boostsecurity.dev
-          api_token: ${{ secrets.BOOST_API_TOKEN_DEV }}
+          api_token: 73661fc0-e406-45aa-8015-16fe84bab025
           additional_args: --disable-telemetry --api-version v2
+          cli_version: 3.0.0.rc483
+          scanner_version: 3.0.0.rc483
+
+
+  native2_scanner:
+    name: Boost Native Scanner Part Deux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: BoostSecurity Scanner
+        uses: peaudecastor/boost-security-scanner-github@v2
+        env:
+          BOOST_CLI_URL: https://assets.build.boostsecurity.io
+        with:
+          action: scan
+          api_endpoint: https://devel.boostsecurity.dev
+          api_token: 73661fc0-e406-45aa-8015-16fe84bab025
+          additional_args: --disable-telemetry --api-version v2 --diff-scan-timeout 2 --name boost-duplicate
           cli_version: 3.0.0.rc483
           scanner_version: 3.0.0.rc483
