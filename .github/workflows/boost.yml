@@ -1,5 +1,6 @@
 name: SAST
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -11,20 +12,20 @@ on:
       - synchronize
 
 jobs:
-  boost_security_sast:
-    name: Boost Security / Native Scanner
+  native_scanner:
+    name: Boost Native Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Native Scanner
+      - name: BoostSecurity Scanner
         uses: peaudecastor/boost-security-scanner-github@v2
         env:
           BOOST_CLI_URL: https://assets.build.boostsecurity.io
         with:
           action: scan
           api_endpoint: https://devel.boostsecurity.dev
-          api_token: ${{ secrets.BOOST_API_TOKEN_DEV }}
+          api_token: 73661fc0-e406-45aa-8015-16fe84bab025
           additional_args: --disable-telemetry --api-version v2
           cli_version: 3.0.0.rc483
           scanner_version: 3.0.0.rc483
