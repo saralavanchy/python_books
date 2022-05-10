@@ -1,17 +1,15 @@
-name: boost
+name: BOOST
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
-      - development
   pull_request:
     branches:
       - main
-      - development
     types:
       - opened
       - synchronize
+
 jobs:
   scan_job:
     name: Boost Security Scanner
@@ -19,9 +17,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: BoostSecurity Scanner
+      - name: Native Scanner
         uses: peaudecastor/boost-security-scanner-github@v2
+        env:
+          BOOST_CLI_URL: https://assets.build.boostsecurity.io
         with:
           action: scan
+          api_endpoint: https://devel.boostsecurity.dev
           api_token: ${{ secrets.BOOST_API_TOKEN_DEV }}
-
+          additional_args: --disable-telemetry --api-version v2
+          cli_version: 3.0.0.rc483
+          scanner_version: 3.0.0.rc483
