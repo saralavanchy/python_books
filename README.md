@@ -57,3 +57,6 @@ mutation {
 - **addUser**: It add a new user to the users list and return the added user. All the parameters are requited except the dni
 - **updateUser**: It change the given values on the user of the given id. The only required parameter is the id. If do not exists an user with the given id it will raise an exception
 - **deleteUser**: It delete an user of the users list. If do not exists an user with the given id it will raise an exception
+
+
+### Testing Boost
