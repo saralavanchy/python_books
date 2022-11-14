@@ -1,49 +1,39 @@
+name: boostsecurity.io
 on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
     types:
       - opened
       - synchronize
 
 jobs:
-  native_scanner:
-    name: Boost Native Scanner
+  boost-sast:
+    name: Boost Security Scanner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: BoostSecurity Scanner
-        uses: peaudecastor/boost-security-scanner-github@v2
-        env:
-          BOOST_CLI_URL: https://assets.build.boostsecurity.io
+        uses: actions/checkout@v3
+      - name: Native Scanner
+        uses: boostsecurityio/boostsec-scanner-github@v4
         with:
-          action: scan
-          api_endpoint: https://devel.boostsecurity.dev
-          api_token: 73661fc0-e406-45aa-8015-16fe84bab025
-          additional_args: --disable-telemetry --api-version v2
-          cli_version: 3.0.0.rc483
-          scanner_version: 3.0.0.rc483
-
-
-  native2_scanner:
-    name: Boost Native Scanner Part Deux
+          api_endpoint: https://api.dev.boostsec.io
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+          registry_module: boostsecurityio/native-scanner
+  boost-sbom:
+    name: SBOM
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: BoostSecurity Scanner
-        uses: peaudecastor/boost-security-scanner-github@v2
-        env:
-          BOOST_CLI_URL: https://assets.build.boostsecurity.io
+        uses: actions/checkout@v3
+      - name: Upload SBOM from Trivy
+        uses: boostsecurityio/boostsec-scanner-github@v4
         with:
-          action: scan
-          api_endpoint: https://devel.boostsecurity.dev
-          api_token: 73661fc0-e406-45aa-8015-16fe84bab025
-          additional_args: --disable-telemetry --api-version v2 --diff-scan-timeout 2 --name boost-duplicate
-          cli_version: 3.0.0.rc483
-          scanner_version: 3.0.0.rc483
+          api_endpoint: https://api.dev.boostsec.io
+          api_token: ${{ secrets.BOOST_API_TOKEN }}
+          registry_module: boostsecurityio/trivy-sbom
